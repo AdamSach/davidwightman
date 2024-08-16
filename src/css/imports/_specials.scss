@@ -53,3 +53,152 @@
 #dynamic-nav a:hover span {
     display: block;
 }
+
+
+
+
+
+
+
+// ANIMATE HOMEPAGE ON LINK CLICK
+
+@keyframes slideOutLeft {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.hidden {
+    display: none; /* Ensures the content is removed from the layout after the animation */
+}
+
+.animate-out {
+    animation: slideOutLeft 3s forwards; /* Adjust the timing and easing as needed */
+}
+
+
+
+
+
+
+// GALLERY STYLING
+
+
+/* Default styling */
+#gallery-content {
+    width: 75%;
+    text-align: center;
+}
+
+.gallery-arrow {
+    font-size: 3rem;
+    color: black;
+    user-select: none;
+    padding: 20px;
+    cursor: pointer;
+}
+
+/* Mobile styling */
+@media (max-width: 768px) {
+    #gallery-content {
+        width: 100% !important; /* Make image full width on mobile */
+    }
+
+    .gallery-arrow {
+        display: none; /* Hide the arrows on mobile */
+    }
+
+    #gallery-image img {
+        max-width: 100%; /* Ensure the image takes up the full width */
+        height: auto;
+    }
+}
+
+
+
+#gallery-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Full viewport height */
+}
+
+.gallery-arrow {
+    font-size: 3rem;
+    color: black;
+    user-select: none;
+    padding: 20px;
+    cursor: pointer;
+}
+
+#gallery-image img {
+    max-width: 100%; /* Ensure the image does not exceed the container width */
+    max-height: 75vh; /* Ensure the image does not exceed 3/4 of the viewport height */
+    height: auto; /* Maintain the aspect ratio */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#gallery-label h2 {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 1.5rem;
+}
+
+#gallery-label p {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 1rem;
+    color: gray;
+}
+
+/* Container for the sliding images */
+#gallery-image {
+    position: relative;
+    overflow: hidden; /* Hide overflow to avoid showing images during animation */
+}
+
+/* Animation for sliding out to the left */
+@keyframes slideOutLeft {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+/* Animation for sliding in from the right */
+@keyframes slideInRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Classes to trigger the animations */
+.slide-out {
+    animation: slideOutLeft 0.5s forwards; /* Adjust timing as needed */
+}
+
+.slide-in {
+    animation: slideInRight 0.5s forwards;
+}

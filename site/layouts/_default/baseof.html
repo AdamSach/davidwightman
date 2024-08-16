@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="{{ $.Site.Language.Lang }}">
   {{ partial "head" . }}
-  <body class="sans-serif" style="background-color: {{ .Params.backgroundcolor }}; min-height: 100vh;">
+  <body class="sans-serif" style="background-color: {{ partial "get-backgroundcolor.html" . }}; min-height: 100vh;">
 
     {{ block "header" . }}{{end}}
 

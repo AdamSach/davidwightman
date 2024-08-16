@@ -1,5 +1,119 @@
 {{ define "main" }}
 
+<div id="gallery-container" style="display: flex; align-items: center; justify-content: center; height: 100vh;">
+    
+    <!-- Left Arrow -->
+    <div id="left-arrow" class="gallery-arrow" style="cursor: pointer;">&#9664;</div>
+    
+    <!-- Image and Label -->
+    <div id="gallery-content" style="width: 75%; text-align: center;">
+        <div id="gallery-image" style="position: relative;">
+            <img id="main-image" src="{{ with index .Pages 0 }}{{ .Params.image }}{{ end }}" alt="{{ with index .Pages 0 }}{{ .Title }}{{ end }}" style="max-width: 100%; height: auto;">
+        </div>
+        <div id="gallery-label" style="margin-top: 20px;">
+            <h2 id="image-title" style="margin: 0;">{{ with index .Pages 0 }}{{ .Title }}{{ end }}</h2>
+            <p id="image-details" style="margin: 5px 0;">{{ with index .Pages 0 }}{{ .Params.year }} | {{ .Params.dimensions }}{{ end }}</p>
+        </div>
+    </div>
+    
+    <!-- Right Arrow -->
+    <div id="right-arrow" class="gallery-arrow" style="cursor: pointer;">&#9654;</div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const pages = JSON.parse('{{ .Pages | jsonify | safeJS }}');
+    let currentIndex = 0;
+    let isAnimating = false;
+
+    const mainImage = document.getElementById('main-image');
+    const imageTitle = document.getElementById('image-title');
+    const imageDetails = document.getElementById('image-details');
+
+    // Handle swipe gestures
+    let startX = 0;
+    let endX = 0;
+
+    mainImage.addEventListener('touchstart', function(event) {
+        startX = event.touches[0].clientX;
+    });
+
+    mainImage.addEventListener('touchmove', function(event) {
+        endX = event.touches[0].clientX;
+    });
+
+    mainImage.addEventListener('touchend', function() {
+        if (isAnimating) return;
+
+        const deltaX = endX - startX;
+        if (Math.abs(deltaX) > 50) { // Swipe distance threshold
+            if (deltaX > 0) {
+                navigateGallery(-1); // Swipe right, go to previous image
+            } else {
+                navigateGallery(1); // Swipe left, go to next image
+            }
+        }
+    });
+
+    function updateGallery(index, direction) {
+        if (index >= 0 && index < pages.length) {
+            const page = pages[index];
+
+            mainImage.classList.add('slide-out');
+            isAnimating = true;
+
+            mainImage.addEventListener('animationend', function handleSlideOut() {
+                mainImage.classList.remove('slide-out');
+                mainImage.classList.add('slide-in');
+
+                mainImage.src = page.Params.image;
+                mainImage.alt = page.Title;
+                imageTitle.textContent = page.Title;
+                imageDetails.textContent = `${page.Params.year} | ${page.Params.dimensions}`;
+
+                mainImage.addEventListener('animationend', function handleSlideIn() {
+                    mainImage.classList.remove('slide-in');
+                    isAnimating = false;
+                    mainImage.removeEventListener('animationend', handleSlideIn);
+                });
+
+                mainImage.removeEventListener('animationend', handleSlideOut);
+            });
+        } else {
+            console.error("Index out of bounds:", index);
+        }
+    }
+
+    function navigateGallery(direction) {
+        if (isAnimating) return;
+
+        currentIndex += direction;
+
+        if (currentIndex < 0) {
+            currentIndex = pages.length - 1;
+        } else if (currentIndex >= pages.length) {
+            currentIndex = 0;
+        }
+
+        updateGallery(currentIndex, direction);
+    }
+
+    document.getElementById('left-arrow').addEventListener('click', function() {
+        navigateGallery(-1);
+    });
+
+    document.getElementById('right-arrow').addEventListener('click', function() {
+        navigateGallery(1);
+    });
+
+   // updateGallery(currentIndex);
+});
 
 
-{{end}}
+    </script>
+    
+
+
+
+{{ end }}
+

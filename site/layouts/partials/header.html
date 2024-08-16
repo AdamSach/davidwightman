@@ -1,0 +1,13 @@
+{{ define "header" }}
+
+{{ $homepage := site.GetPage "section" "/" }}
+{{ $title := $homepage.Params.title | default "David Majury Wightman" }}
+{{ $fontcolor := $homepage.Params.textcolor | default "white" }}
+
+
+
+<div class="title flex justify-center align-center f1 pa5">
+    <h1 id="dynamic-title" style="font-family: 'Dunhill Script', cursive; text-decoration: none; cursor: pointer; color: rgba({{ $fontcolor }});">{{ $title }}</h1>
+</div>
+
+{{ end }}

@@ -1,0 +1,3 @@
+{{ $homepage := site.GetPage "section" "/" }}
+{{ $backgroundColor := $homepage.Params.backgroundcolor | default "white" }}
+{{ return $backgroundColor }}
