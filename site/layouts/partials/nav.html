@@ -1,51 +1,77 @@
-<nav class="w-100 flex justify-center bg-transparent relative">
+<nav id="dynamic-nav" class="w-100 flex justify-center bg-transparent relative">
+	<!-- Dynamic content will be injected here -->
+</nav>
 
-	<!-- Primary Nav -->
-	<ul class="list flex justify-center pa0 ma0 mw8 w-100">
-  
-	  <li class="relative">
-		<a href="/fables" class="db no-underline relative">
-		  <img src="/img/fable.jpg" alt="Fables" class="db ba b--black-20 bw2" />
-		  <span class="absolute top-50 left-50 translate-center white f4 fw6 dn">{{ .Params.menu1.heading }}</span>
-		</a>
-	  </li>
-  
-	  <li class="relative">
-		<a href="/ikons" class="db no-underline relative">
-		  <img src="/img/ikons.jpg" alt="Ikons" class="db ba b--black-20 bw2" />
-		  <span class="absolute top-50 left-50 translate-center white f4 fw6 dn">{{ .Params.menu2.heading }}</span>
-		</a>
-	  </li>
-  
-	  <li class="relative">
-		<a href="/untitled" class="db no-underline relative">
-		  <img src="/img/untitled.jpg" alt="Untitled" class="db ba b--black-20 bw2" />
-		  <span class="absolute top-50 left-50 translate-center white f4 fw6 dn">{{ .Params.menu3.heading }}</span>
-		</a>
-	  </li>
-  
-	  <li class="relative">
-		<a href="/collections" class="db no-underline relative">
-		  <img src="/img/collections.jpg" alt="Collections" class="db ba b--black-20 bw2" />
-		  <span class="absolute top-50 left-50 translate-center white f4 fw6 dn">{{ .Params.menu4.heading }}</span>
-		</a>
-	  </li>
-  
-	  <li class="relative">
-		<a href="/miscellaneous" class="db no-underline relative">
-		  <img src="/img/odd.png" alt="Miscellaneous" class="db ba b--black-20 bw2" />
-		  <span class="absolute top-50 left-50 translate-center white f4 fw6 dn">{{ .Params.menu5.heading }}</span>
-		</a>
-	  </li>
-  
-	  <li class="relative">
-		<a href="/biography" class="db no-underline relative">
-		  <img src="/img/bio/_L3D0579.jpg" alt="Biography" class="db ba b--black-20 bw2" />
-		  <span class="absolute top-50 left-50 translate-center white f4 fw6 dn">{{ .Params.menu6.heading }}</span>
-		</a>
-	  </li>
-  
-	</ul>
-  
-  </nav>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const nav = document.getElementById('dynamic-nav');
+
+    // Hugo templating data
+    const menuItems = [
+        { href: '/fables', image: '{{ .Params.menu1.image }}', heading: '{{ .Params.menu1.heading }}' },
+        { href: '/ikons', image: '{{ .Params.menu2.image }}', heading: '{{ .Params.menu2.heading }}' },
+        { href: '/untitled', image: '{{ .Params.menu3.image }}', heading: '{{ .Params.menu3.heading }}' },
+        { href: '/collections', image: '{{ .Params.menu4.image }}', heading: '{{ .Params.menu4.heading }}' },
+        { href: '/miscellaneous', image: '{{ .Params.menu5.image }}', heading: '{{ .Params.menu5.heading }}' },
+        { href: '/biography', image: '{{ .Params.menu6.image }}', heading: '{{ .Params.menu6.heading }}' }
+    ];
+
+    // Function to shuffle the menu items
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    // Shuffle the menu items array
+    const shuffledMenuItems = shuffle(menuItems);
+
+    // Define the minimum and maximum widths for the frames
+    const minWidth = 200; // in pixels
+    const maxWidth = 400; // in pixels
+
+    // Create the UL element
+    const ul = document.createElement('ul');
+    ul.className = 'list flex justify-center pa0 ma0 mw8 w-100';
+
+    // Create list items dynamically from the shuffled array
+    shuffledMenuItems.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.className = 'relative';
+
+        // Randomize the width between the minimum and maximum values
+        const randomWidth = Math.floor(Math.random() * (maxWidth - minWidth + 1)) + minWidth;
+        li.style.width = `${randomWidth}px`;
+
+        const a = document.createElement('a');
+        a.href = item.href;
+        a.className = 'db no-underline relative';
+
+        const img = document.createElement('img');
+        img.src = item.image;
+        img.alt = item.heading;
+        img.className = 'db ba b--black-20 bw2 menuimg';
+
+        const span = document.createElement('span');
+        span.className = 'absolute top-50 left-50 translate-center white f4 fw6 dn';
+        span.textContent = item.heading;
+
+        a.appendChild(img);
+        a.appendChild(span);
+        li.appendChild(a);
+        ul.appendChild(li);
+
+        // Animate appearance with a delay
+        setTimeout(() => {
+            li.classList.add('visible');
+        }, index * 100); // Adjust the delay between items
+    });
+
+    // Append the UL to the nav
+    nav.appendChild(ul);
+});
+
+</script>
   

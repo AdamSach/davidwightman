@@ -5,22 +5,22 @@ sharingimage: /img/something.jpg
 textcolor: 137, 192, 255, 1
 backgroundcolor: '#2a86ad'
 menu1:
-    heading: FABLES
-    image: /img/fables.jpg
+    heading: Fables
+    image: /img/homepage/Fables.webp
 menu2:
-    heading: IKONS
-    image: /img/ikons/_L3D0264.jpg
+    heading: Ikons
+    image: /img/homepage/Ikons.webp
 menu3:
-    heading: UNTITLED
-    image: /img/untitled.jpg
+    heading: Untitled
+    image: /img/homepage/Untitled.webp
 menu4:
-    heading: COLLECTIONS
-    image: /img/collections.jpg
+    heading: Collections
+    image: /img/homepage/Collections.webp
 menu5:
-    heading: MISCELLANEOUS
-    image: /img/miscellaneous.jpg
+    heading: Miscellaneous 
+    image: /img/homepage/Misc.webp
 menu6:
-    heading: BIOGRAPHY
-    image: /img/bio/_L3D0579.jpg
+    heading: Biography
+    image: /img/homepage/Biography.webp
 
 ---
