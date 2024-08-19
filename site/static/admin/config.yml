@@ -19,9 +19,8 @@ collections:
         fields:
           - {label: "Title", name: "title", widget: "string"}
           - {label: "Description", name: "description", widget: "text"}
-          - {label: "Sharing Image", name: "sharingimage", widget: "image"}
-          - {label: "Text Color", name: "textcolor", widget: "string"}
-          - {label: "Background Color", name: "backgroundcolor", widget: "string"}
+          - {label: "Text Color", name: "textcolor", widget: "color"}
+          - {label: "Background Color", name: "backgroundcolor", widget: "color"}
           - label: "Menu Items"
             name: "menu_items"
             widget: "list"
