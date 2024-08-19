@@ -51,9 +51,11 @@
             const a = document.createElement('a');
             a.href = item.href;
             a.className = 'db no-underline relative menu-link';
+
+            const imgPath = item.image.replace('site/static', '');
     
             const img = document.createElement('img');
-            img.src = item.image;
+            img.src = imgPath; // Use the modified image path
             img.alt = item.heading;
             img.className = 'db ba b--black-20 bw2 menuimg';
     

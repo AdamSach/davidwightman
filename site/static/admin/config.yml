@@ -15,7 +15,7 @@ collections:
       - file: "site/content/_index.md"
         label: "Home Page"
         name: "home"
-        media_folder: "/static/img/homepage"  # Absolute path ensures correct frontmatter
+        media_folder: "/site/static/img/homepage"  # Absolute path ensures correct frontmatter
         public_folder: "/img/homepage"  # Public-facing path
         fields:
           - { label: "Title", name: "title", widget: "string" }
