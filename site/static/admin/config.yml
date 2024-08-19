@@ -2,112 +2,114 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "/site/static/img" # Folder where user uploaded files should go (absolute path)
-public_folder: "/img" # Public-facing URL for the images
+media_folder: "/static/img"  # Global absolute path for media folder
+public_folder: "/img"  # Global absolute path for public access
 
 local_backend: true
 
 collections:
+  # Homepage as a file collection
   - name: "homepage"
     label: "Homepage"
-    media_folder: "/img/homepage" # Absolute path for homepage images
-    public_folder: "/img/homepage" # Public URL for homepage images
     files:
       - file: "site/content/_index.md"
         label: "Home Page"
         name: "home"
+        media_folder: "/static/img/homepage"  # Absolute path ensures correct frontmatter
+        public_folder: "/img/homepage"  # Public-facing path
         fields:
-          - {label: "Title", name: "title", widget: "string"}
-          - {label: "Description", name: "description", widget: "text"}
-          - {label: "Text Color", name: "textcolor", widget: "color"}
-          - {label: "Background Color", name: "backgroundcolor", widget: "color"}
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Text Color", name: "textcolor", widget: "color" }
+          - { label: "Background Color", name: "backgroundcolor", widget: "color" }
           - label: "Menu Items"
             name: "menu_items"
             widget: "list"
             fields:
-              - {label: "Heading", name: "heading", widget: "string"}
-              - {label: "Image", name: "image", widget: "image"}
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Image", name: "image", widget: "image" }
 
+  # Folder collections
   - name: "fables"
     label: "Fables"
     folder: "site/content/fables"
     create: true
     slug: "{{slug}}"
-    media_folder: "/site/static/img/fables"
-    public_folder: "/img/fables"
+    media_folder: "static/img/fables"  # Absolute path
+    public_folder: "/img/fables"  # Correct public path
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Year", name: "year", widget: "number"}
-      - {label: "Dimensions", name: "dimensions", widget: "string"}
-      - {label: "Image", name: "image", widget: "image"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Year", name: "year", widget: "number" }
+      - { label: "Dimensions", name: "dimensions", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Body", name: "body", widget: "markdown" }
 
   - name: "ikons"
     label: "Ikons"
     folder: "site/content/ikons"
     create: true
     slug: "{{slug}}"
-    media_folder: "/site/static/img/ikons"
-    public_folder: "/img/ikons"
+    media_folder: "/static/img/ikons"  # Absolute path
+    public_folder: "/img/ikons"  # Correct public path
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Year", name: "year", widget: "number"}
-      - {label: "Dimensions", name: "dimensions", widget: "string"}
-      - {label: "Image", name: "image", widget: "image"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Year", name: "year", widget: "number" }
+      - { label: "Dimensions", name: "dimensions", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Body", name: "body", widget: "markdown" }
 
   - name: "untitled"
     label: "Untitled"
     folder: "site/content/untitled"
     create: true
     slug: "{{slug}}"
-    media_folder: "/site/static/img/untitled"
-    public_folder: "/img/untitled"
+    media_folder: "static/img/untitled"  # Absolute path
+    public_folder: "/img/untitled"  # Correct public path
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Year", name: "year", widget: "number"}
-      - {label: "Dimensions", name: "dimensions", widget: "string"}
-      - {label: "Image", name: "image", widget: "image"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Year", name: "year", widget: "number" }
+      - { label: "Dimensions", name: "dimensions", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Body", name: "body", widget: "markdown" }
 
   - name: "collections"
     label: "Collections"
     folder: "site/content/collections"
     create: true
     slug: "{{slug}}"
-    media_folder: "/site/static/img/collections"
-    public_folder: "/img/collections"
+    media_folder: "static/img/collections"  # Absolute path
+    public_folder: "/img/collections"  # Correct public path
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Year", name: "year", widget: "number"}
-      - {label: "Dimensions", name: "dimensions", widget: "string"}
-      - {label: "Image", name: "image", widget: "image"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Year", name: "year", widget: "number" }
+      - { label: "Dimensions", name: "dimensions", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Body", name: "body", widget: "markdown" }
 
   - name: "miscellaneous"
     label: "Miscellaneous"
     folder: "site/content/miscellaneous"
     create: true
     slug: "{{slug}}"
-    media_folder: "site/static/img/miscellaneous"
-    public_folder: "/img/miscellaneous"
+    media_folder: "static/img/miscellaneous"  # Absolute path
+    public_folder: "/img/miscellaneous"  # Correct public path
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Year", name: "year", widget: "number"}
-      - {label: "Dimensions", name: "dimensions", widget: "string"}
-      - {label: "Image", name: "image", widget: "image"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Year", name: "year", widget: "number" }
+      - { label: "Dimensions", name: "dimensions", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Body", name: "body", widget: "markdown" }
 
   - name: "biography"
     label: "Biography"
     folder: "site/content/biography"
     create: true
     slug: "{{slug}}"
-    media_folder: "/site/static/img/biography"
-    public_folder: "/img/biography"
+    media_folder: "static/img/biography"  # Absolute path
+    public_folder: "/img/biography"  # Correct public path
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Year", name: "year", widget: "number"}
-      - {label: "Dimensions", name: "dimensions", widget: "string"}
-      - {label: "Image", name: "image", widget: "image"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Year", name: "year", widget: "number" }
+      - { label: "Dimensions", name: "dimensions", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Body", name: "body", widget: "markdown" }
