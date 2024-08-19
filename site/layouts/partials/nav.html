@@ -8,12 +8,14 @@
     
         // Hugo templating data
         const menuItems = [
-            {{ range .Params.menu_items }}
+            {{ $index := 0 }}
+            {{ range $i, $item := .Params.menu_items }}
             {
-                href: '/{{ .heading | urlize }}',
-                image: '{{ .image }}',
-                heading: '{{ .heading }}'
-            }{{ if not (eq (index $.Params.menu_items (add $index 1)) nil) }},{{ end }}
+                href: '/{{ $item.heading | urlize }}',
+                image: '{{ $item.image }}',
+                heading: '{{ $item.heading }}'
+            }{{ if lt $index (sub (len $.Params.menu_items) 1) }},{{ end }}
+            {{ $index = add $index 1 }}
             {{ end }}
         ];
     
