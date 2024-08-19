@@ -2,20 +2,20 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "site/static/img" # Global media folder for all uploads
-public_folder: "/img" # Global public folder for all uploaded media
+media_folder: "site/static/img" # Folder where user uploaded files should go
+public_folder: "/img"
 
 local_backend: true
 
 collections:
   - name: "homepage"
     label: "Homepage"
+    media_folder: "/site/static/img/homepage"
+    public_folder: "/img/homepage"
     files:
       - file: "site/content/_index.md"
         label: "Home Page"
         name: "home"
-        media_folder: "/../../static/img/homepage"
-        public_folder: "/img/homepage"
         fields:
           - {label: "Title", name: "title", widget: "string"}
           - {label: "Description", name: "description", widget: "text"}
@@ -33,7 +33,7 @@ collections:
     folder: "site/content/fables"
     create: true
     slug: "{{slug}}"
-    media_folder: "/../../static/img/fables" # Relative to the content folder
+    media_folder: "/site/static/img/fables"
     public_folder: "/img/fables"
     fields:
       - {label: "Title", name: "title", widget: "string"}
@@ -47,7 +47,7 @@ collections:
     folder: "site/content/ikons"
     create: true
     slug: "{{slug}}"
-    media_folder: "/../../static/img/ikons" # Relative to the content folder
+    media_folder: "/site/static/img/ikons"
     public_folder: "/img/ikons"
     fields:
       - {label: "Title", name: "title", widget: "string"}
@@ -61,7 +61,7 @@ collections:
     folder: "site/content/untitled"
     create: true
     slug: "{{slug}}"
-    media_folder: "/../../static/img/untitled" # Relative to the content folder
+    media_folder: "/site/static/img/untitled"
     public_folder: "/img/untitled"
     fields:
       - {label: "Title", name: "title", widget: "string"}
@@ -75,7 +75,7 @@ collections:
     folder: "site/content/collections"
     create: true
     slug: "{{slug}}"
-    media_folder: "/../../static/img/collections" # Relative to the content folder
+    media_folder: "/site/static/img/collections"
     public_folder: "/img/collections"
     fields:
       - {label: "Title", name: "title", widget: "string"}
@@ -89,7 +89,7 @@ collections:
     folder: "site/content/miscellaneous"
     create: true
     slug: "{{slug}}"
-    media_folder: "/../../static/img/miscellaneous" # Relative to the content folder
+    media_folder: "site/static/img/miscellaneous"
     public_folder: "/img/miscellaneous"
     fields:
       - {label: "Title", name: "title", widget: "string"}
@@ -103,7 +103,7 @@ collections:
     folder: "site/content/biography"
     create: true
     slug: "{{slug}}"
-    media_folder: "/../../static/img/biography" # Relative to the content folder
+    media_folder: "/site/static/img/biography"
     public_folder: "/img/biography"
     fields:
       - {label: "Title", name: "title", widget: "string"}
