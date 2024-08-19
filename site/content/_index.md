@@ -7,7 +7,7 @@ menu_items:
   - heading: Fables
     image: site/content/site/static/img/homepage/fables.webp
   - heading: Ikons
-    image: /img/homepage/Ikons.webp
+    image: site/content/site/static/img/homepage/ikons.webp
   - heading: Untitled
     image: /img/homepage/Untitled.webp
   - heading: Collections
