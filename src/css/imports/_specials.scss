@@ -126,6 +126,10 @@
         max-width: 100%; /* Ensure the image takes up the full width */
         height: auto;
     }
+
+    #gallery-label {
+        margin-left: 10px;
+    }
 }
 
 
@@ -202,3 +206,49 @@
 .slide-in {
     animation: slideInRight 0.5s forwards;
 }
+
+
+// BIO
+
+.biography-content {
+    max-width: 800px; /* Adjust this width to control how wide the text block is */
+    margin: 0 auto; /* Centers the block horizontally */
+    text-align: left; /* Keeps the text left-aligned within the centered block */
+  //  padding: 20px; /* Optional: add padding to create space inside the block */
+    font-size: 24px;
+    p {
+        max-width: unset !important;
+        padding-top: 25px;
+    }
+  }
+
+  @media (max-width: 768px) {.biography-content {p{padding-left: 10px; padding-right: 10px;}}}
+  
+  .biography-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   // padding: 20px; /* Optional: additional padding around the centered block */
+  }
+
+  .sound-button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 0px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1000;
+    svg {
+        filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.5));;
+    } 
+  }
+  
+  .sound-button:hover {
+    transition: transform 1s linear;
+    transform: rotate(2deg);
+  }
+  
+  

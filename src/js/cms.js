@@ -6,5 +6,5 @@ import styles from "!to-string-loader!css-loader!postcss-loader!sass-loader!../c
 import HomePreview from "./cms-preview-templates/homepage";
 
 CMS.registerPreviewStyle(styles, { raw: true });
-CMS.registerPreviewTemplate("homepage", HomePreview);
+CMS.registerPreviewTemplate("home", HomePreview);
 CMS.init();

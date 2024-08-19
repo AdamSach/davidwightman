@@ -20,6 +20,7 @@ collections:
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Description", name: "description", widget: "text" }
+          - { label: "Email", name: "email", widget: "string" }
           - { label: "Text Color", name: "textcolor", widget: "color" }
           - { label: "Background Color", name: "backgroundcolor", widget: "color" }
           - label: "Menu Items"
@@ -39,7 +40,8 @@ collections:
     public_folder: "/img/fables"  # Correct public path
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Year", name: "year", widget: "number" }
+      - { label: "Year", name: "year", widget: "datetime", date_format: 'yyyy', time_format: false, format: 'yyyy' }
+      - { label: "Medium", name: "medium", widget: "string" }
       - { label: "Dimensions", name: "dimensions", widget: "string" }
       - { label: "Image", name: "image", widget: "image" }
       - { label: "Body", name: "body", widget: "markdown" }
@@ -49,11 +51,12 @@ collections:
     folder: "site/content/ikons"
     create: true
     slug: "{{slug}}"
-    media_folder: "/static/img/ikons"  # Absolute path
+    media_folder: "static/img/ikons"  # Absolute path
     public_folder: "/img/ikons"  # Correct public path
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Year", name: "year", widget: "number" }
+      - { label: "Year", name: "year", widget: "datetime", date_format: 'yyyy', time_format: false, format: 'yyyy' }
+      - { label: "Medium", name: "medium", widget: "string" }
       - { label: "Dimensions", name: "dimensions", widget: "string" }
       - { label: "Image", name: "image", widget: "image" }
       - { label: "Body", name: "body", widget: "markdown" }
@@ -67,7 +70,8 @@ collections:
     public_folder: "/img/untitled"  # Correct public path
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Year", name: "year", widget: "number" }
+      - { label: "Year", name: "year", widget: "datetime", date_format: 'yyyy', time_format: false, format: 'yyyy' }
+      - { label: "Medium", name: "medium", widget: "string" }
       - { label: "Dimensions", name: "dimensions", widget: "string" }
       - { label: "Image", name: "image", widget: "image" }
       - { label: "Body", name: "body", widget: "markdown" }
@@ -81,7 +85,8 @@ collections:
     public_folder: "/img/collections"  # Correct public path
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Year", name: "year", widget: "number" }
+      - { label: "Year", name: "year", widget: "datetime", date_format: 'yyyy', time_format: false, format: 'yyyy' }
+      - { label: "Medium", name: "medium", widget: "string" }
       - { label: "Dimensions", name: "dimensions", widget: "string" }
       - { label: "Image", name: "image", widget: "image" }
       - { label: "Body", name: "body", widget: "markdown" }
@@ -95,7 +100,8 @@ collections:
     public_folder: "/img/miscellaneous"  # Correct public path
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Year", name: "year", widget: "number" }
+      - { label: "Year", name: "year", widget: "datetime", date_format: 'yyyy', time_format: false, format: 'yyyy' }
+      - { label: "Medium", name: "medium", widget: "string" }
       - { label: "Dimensions", name: "dimensions", widget: "string" }
       - { label: "Image", name: "image", widget: "image" }
       - { label: "Body", name: "body", widget: "markdown" }
@@ -109,7 +115,8 @@ collections:
     public_folder: "/img/biography"  # Correct public path
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Year", name: "year", widget: "number" }
+      - { label: "Year", name: "year", widget: "datetime", date_format: 'yyyy', time_format: false, format: 'yyyy' }
+      - { label: "Medium", name: "medium", widget: "string" }
       - { label: "Dimensions", name: "dimensions", widget: "string" }
       - { label: "Image", name: "image", widget: "image" }
       - { label: "Body", name: "body", widget: "markdown" }

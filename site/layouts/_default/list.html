@@ -1,24 +1,30 @@
 {{ define "main" }}
 
+{{ $homepage := site.GetPage "section" "/" }}
+{{ $title := $homepage.Params.title | default "David Majury Wightman" }}
+{{ $fontcolor := $homepage.Params.textcolor | default "white" }}
+
 <div id="gallery-container" style="display: flex; align-items: center; justify-content: center; height: 100vh;">
     
     <!-- Left Arrow -->
-    <div id="left-arrow" class="gallery-arrow" style="cursor: pointer;">&#9664;</div>
+    <div id="left-arrow" class="gallery-arrow" style="cursor: pointer; font-size: 2rem; padding: 0 20px; color: {{ $fontcolor }};">&#9664;</div>
     
     <!-- Image and Label -->
     <div id="gallery-content" style="width: 75%; text-align: center;">
         <div id="gallery-image" style="position: relative;">
             <img id="main-image" src="{{ with index .Pages 0 }}{{ .Params.image }}{{ end }}" alt="{{ with index .Pages 0 }}{{ .Title }}{{ end }}" style="max-width: 100%; height: auto;">
         </div>
-        <div id="gallery-label" style="margin-top: 20px;">
-            <h2 id="image-title" style="margin: 0;">{{ with index .Pages 0 }}{{ .Title }}{{ end }}</h2>
-            <p id="image-details" style="margin: 5px 0;">{{ with index .Pages 0 }}{{ .Params.year }} | {{ .Params.dimensions }}{{ end }}</p>
+        <div id="gallery-label" style="color: white; margin-top: 20px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; text-align: left; width: 50%; ">
+            <p id="image-title" style="color: white; margin: 0; font-style: italic;">{{ with index .Pages 0 }}{{ .Title }}{{ end }} ({{ with index .Pages 0 }}{{ .Params.year }}{{ end }})</p>
+            <p id="image-medium" style="color: white; margin: 0;">{{ with index .Pages 0 }}{{ .Params.medium }}{{ end }}</p>
+            <p id="image-dimensions" style="color: white; margin: 0;">{{ with index .Pages 0 }}{{ .Params.dimensions }}{{ end }}</p>
         </div>
     </div>
     
     <!-- Right Arrow -->
-    <div id="right-arrow" class="gallery-arrow" style="cursor: pointer;">&#9654;</div>
+    <div id="right-arrow" class="gallery-arrow" style="cursor: pointer; font-size: 2rem; padding: 0 20px; color: {{ $fontcolor }};">&#9654;</div>
 </div>
+
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -28,7 +34,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const mainImage = document.getElementById('main-image');
     const imageTitle = document.getElementById('image-title');
-    const imageDetails = document.getElementById('image-details');
+    const imageMedium = document.getElementById('image-medium');
+    const imageDimensions = document.getElementById('image-dimensions');
 
     // Handle swipe gestures
     let startX = 0;
@@ -55,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    function updateGallery(index, direction) {
+    function updateGallery(index) {
         if (index >= 0 && index < pages.length) {
             const page = pages[index];
 
@@ -68,8 +75,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 mainImage.src = page.Params.image;
                 mainImage.alt = page.Title;
-                imageTitle.textContent = page.Title;
-                imageDetails.textContent = `${page.Params.year} | ${page.Params.dimensions}`;
+                imageTitle.textContent = `${page.Title} (${page.Params.year})`;
+                imageMedium.textContent = page.Params.medium;
+                imageDimensions.textContent = page.Params.dimensions;
 
                 mainImage.addEventListener('animationend', function handleSlideIn() {
                     mainImage.classList.remove('slide-in');
@@ -95,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
             currentIndex = 0;
         }
 
-        updateGallery(currentIndex, direction);
+        updateGallery(currentIndex);
     }
 
     document.getElementById('left-arrow').addEventListener('click', function() {
@@ -106,6 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
         navigateGallery(1);
     });
 
+   // Initialize gallery with the first image
    // updateGallery(currentIndex);
 });
 

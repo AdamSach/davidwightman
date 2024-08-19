@@ -52,7 +52,9 @@
             a.href = item.href;
             a.className = 'db no-underline relative menu-link';
 
-            const imgPath = item.image.replace('site/static', '');
+            console.log(item.image);
+            const imgPath = item.image.replace('static', '');
+            console.log(imgPath);
     
             const img = document.createElement('img');
             img.src = imgPath; // Use the modified image path

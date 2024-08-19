@@ -6,8 +6,21 @@
 
 
 
-<div class="title flex justify-center align-center f1 pa5">
-    <h1 id="dynamic-title" style="font-family: 'Dunhill Script', cursive; text-decoration: none; cursor: pointer; color: rgba({{ $fontcolor }});">{{ $title }}</h1>
+{{ if or .IsHome (eq .Title "Biography") }}
+    <div class="title flex justify-center align-center f1 pa5">
+        <h1 id="dynamic-title" style="font-family: 'Dunhill Script', cursive; text-decoration: none; color: {{ $fontcolor }};">{{ .Title }}</h1>
+    </div>
+{{ else }}
+    <!-- Render content for other pages -->
+{{ end }}
+
+
+{{ if not .IsHome }}
+<div class="back-button" style="z-index: 999; width: auto; height: auto;">
+    <a href="{{ .Site.BaseURL }}" class="back-link" style="z-index: 999; position: fixed; top: 10px; left: 10px; font-family: 'Dunhill Script', cursive; text-decoration: none; cursor: pointer; color: {{ $fontcolor }}; font-size:24px;">&#8592; Home</a>
 </div>
+{{ end }}
+
+
 
 {{ end }}

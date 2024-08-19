@@ -1,6 +1,23 @@
-<footer class="bg-transparent ph3 pv4 white">
+{{ $homepage := site.GetPage "section" "/" }}
+{{ $title := $homepage.Params.title | default "David Majury Wightman" }}
+{{ $contact := $homepage.Params.email | default "no email provided" }}
+{{ $fontcolor := $homepage.Params.textcolor | default "white" }}
+
+<footer class="bg-transparent ph3 pv4">
 
 
+    <div class="title flex flex-column f4 pa1">
+        <h1 class="tr" id="dynamic-title" style="font-family: 'Dunhill Script', cursive; text-decoration: none; color: {{ $fontcolor }};text-shadow: rgba(0, 0, 0, 0.6) -5px 5px 5px;">
+            {{ $title }} © {{ now.Format "2006" }}
+        </h1>
+                <!-- Contact Information -->
+                <p class="f5 tr" style="max-width:unset; color: {{ $fontcolor }};text-shadow: rgba(0, 0, 0, 0.6) -5px 5px 5px;">
+                    Inquiries: 
+                    <a style="color: {{ $fontcolor }};text-shadow: rgba(0, 0, 0, 0.6) -5px 5px 5px;" href="mailto:{{ .Params.contact }}" class="link blue">
+                        {{ $contact }}
+                    </a>
+                </p>
+    </div>
 
 </footer>
 
