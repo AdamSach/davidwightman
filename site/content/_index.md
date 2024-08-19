@@ -5,15 +5,15 @@ textcolor: "#c9b239"
 backgroundcolor: "#2a86ad"
 menu_items:
   - heading: Fables
-    image: site/content/site/static/img/homepage/fables.webp
+    image: site/static/img/homepage/Fables.webp
   - heading: Ikons
-    image: site/content/site/static/img/homepage/ikons.webp
+    image: site/static/img/homepage/Ikons.webp
   - heading: Untitled
-    image: /img/homepage/Untitled.webp
+    image: site/static/img/homepage/Untitled.webp
   - heading: Collections
-    image: /img/homepage/Collections.webp
+    image: site/static/img/homepage/Collections.webp
   - heading: Miscellaneous
-    image: /img/homepage/Misc.webp
+    image: site/static/img/homepage/Misc.webp
   - heading: Biography
-    image: site/content/static/img/homepage/biography.webp
+    image: site/static/img/homepage/Biography.webp
 ---
