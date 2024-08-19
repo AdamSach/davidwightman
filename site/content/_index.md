@@ -1,6 +1,6 @@
 ---
 title: David Majury Wightman
-description: A short description of what this website is
+description: A short description of what this website i
 textcolor: "#c9b239"
 backgroundcolor: "#2a86ad"
 menu_items:
@@ -15,5 +15,5 @@ menu_items:
   - heading: Miscellaneous
     image: /img/homepage/Misc.webp
   - heading: Biography
-    image: /img/homepage/Biography.webp
+    image: site/content/static/img/homepage/biography.webp
 ---
