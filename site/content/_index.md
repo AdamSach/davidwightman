@@ -1,11 +1,11 @@
 ---
 title: David Majury Wightman
-description: write what this website is about
-textcolor: 137, 192, 255, 1
-backgroundcolor: '#2a86ad'
+description: A short description of what this website is
+textcolor: "#c9b239"
+backgroundcolor: "#2a86ad"
 menu_items:
   - heading: Fables
-    image: /img/homepage/Fables.webp
+    image: site/content/site/static/img/homepage/fables.webp
   - heading: Ikons
     image: /img/homepage/Ikons.webp
   - heading: Untitled
