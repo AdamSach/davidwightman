@@ -5,7 +5,7 @@ textcolor: "#c9b239"
 backgroundcolor: "#2a86ad"
 menu_items:
   - heading: Fables
-    image: img/homepage/fables.webp
+    image: static/img/homepage/fables.webp
   - heading: Ikons
     image: /img/homepage/Ikons.webp
   - heading: Untitled
