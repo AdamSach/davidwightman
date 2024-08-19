@@ -9,11 +9,11 @@ local_backend: true
 
 collections:
   # Homepage as a file collection
-  - name: "homepage"
-    label: "Homepage"
+  - name: "pages"
+    label: "Pages"
     files:
       - file: "site/content/_index.md"
-        label: "Home Page"
+        label: "Homepage"
         name: "home"
         media_folder: "/site/static/img/homepage"  # Absolute path ensures correct frontmatter
         public_folder: "/img/homepage"  # Public-facing path
@@ -26,9 +26,18 @@ collections:
           - label: "Menu Items"
             name: "menu_items"
             widget: "list"
+            create: false
             fields:
               - { label: "Heading", name: "heading", widget: "string" }
               - { label: "Image", name: "image", widget: "image" }
+    - file: "site/content/biography.md"
+        label: "Biography"
+        name: "bio"
+        media_folder: "/site/static/img/bio"  # Absolute path ensures correct frontmatter
+        public_folder: "/img/bio"  # Public-facing path
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
 
   # Folder collections
   - name: "fables"
@@ -98,21 +107,6 @@ collections:
     slug: "{{slug}}"
     media_folder: "static/img/miscellaneous"  # Absolute path
     public_folder: "/img/miscellaneous"  # Correct public path
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Year", name: "year", widget: "datetime", date_format: 'yyyy', time_format: false, format: 'yyyy' }
-      - { label: "Medium", name: "medium", widget: "string" }
-      - { label: "Dimensions", name: "dimensions", widget: "string" }
-      - { label: "Image", name: "image", widget: "image" }
-      - { label: "Body", name: "body", widget: "markdown" }
-
-  - name: "biography"
-    label: "Biography"
-    folder: "site/content/biography"
-    create: true
-    slug: "{{slug}}"
-    media_folder: "static/img/biography"  # Absolute path
-    public_folder: "/img/biography"  # Correct public path
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Year", name: "year", widget: "datetime", date_format: 'yyyy', time_format: false, format: 'yyyy' }
