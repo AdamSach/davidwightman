@@ -30,13 +30,14 @@ collections:
             fields:
               - { label: "Heading", name: "heading", widget: "string" }
               - { label: "Image", name: "image", widget: "image" }
-    - file: "site/content/biography.md"
+      - file: "site/content/biography.md"
         label: "Biography"
         name: "bio"
         media_folder: "/site/static/img/bio"  # Absolute path ensures correct frontmatter
         public_folder: "/img/bio"  # Public-facing path
         fields:
           - { label: "Title", name: "title", widget: "string" }
+          - { label: "Image", name: "image", widget: "image" }
           - { label: "Body", name: "body", widget: "markdown" }
 
   # Folder collections
