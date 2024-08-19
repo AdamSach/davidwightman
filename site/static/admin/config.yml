@@ -2,16 +2,16 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "site/static/img" # Folder where user uploaded files should go
-public_folder: "/img"
+media_folder: "/site/static/img" # Folder where user uploaded files should go (absolute path)
+public_folder: "/img" # Public-facing URL for the images
 
 local_backend: true
 
 collections:
   - name: "homepage"
     label: "Homepage"
-    media_folder: "/site/static/img/homepage"
-    public_folder: "/img/homepage"
+    media_folder: "/site/static/img/homepage" # Absolute path for homepage images
+    public_folder: "/img/homepage" # Public URL for homepage images
     files:
       - file: "site/content/_index.md"
         label: "Home Page"
