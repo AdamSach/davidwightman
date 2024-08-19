@@ -10,7 +10,7 @@ local_backend: true
 collections:
   - name: "homepage"
     label: "Homepage"
-    media_folder: "/site/static/img/homepage" # Absolute path for homepage images
+    media_folder: "/img/homepage" # Absolute path for homepage images
     public_folder: "/img/homepage" # Public URL for homepage images
     files:
       - file: "site/content/_index.md"
