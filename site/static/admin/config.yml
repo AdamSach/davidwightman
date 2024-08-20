@@ -61,7 +61,7 @@ collections:
     folder: "site/content/ikons"
     create: true
     slug: "{{slug}}"
-    media_folder: "static/img/ikons"  # Absolute path
+    media_folder: "/site/static/img/ikons"  # Absolute path
     public_folder: "/img/ikons"  # Correct public path
     fields:
       - { label: "Title", name: "title", widget: "string" }
@@ -76,7 +76,7 @@ collections:
     folder: "site/content/untitled"
     create: true
     slug: "{{slug}}"
-    media_folder: "static/img/untitled"  # Absolute path
+    media_folder: "/site/static/img/untitled"  # Absolute path
     public_folder: "/img/untitled"  # Correct public path
     fields:
       - { label: "Title", name: "title", widget: "string" }
@@ -91,7 +91,7 @@ collections:
     folder: "site/content/collections"
     create: true
     slug: "{{slug}}"
-    media_folder: "static/img/collections"  # Absolute path
+    media_folder: "/site/static/img/collections"  # Absolute path
     public_folder: "/img/collections"  # Correct public path
     fields:
       - { label: "Title", name: "title", widget: "string" }
@@ -106,7 +106,7 @@ collections:
     folder: "site/content/miscellaneous"
     create: true
     slug: "{{slug}}"
-    media_folder: "static/img/miscellaneous"  # Absolute path
+    media_folder: "/site/static/img/miscellaneous"  # Absolute path
     public_folder: "/img/miscellaneous"  # Correct public path
     fields:
       - { label: "Title", name: "title", widget: "string" }
