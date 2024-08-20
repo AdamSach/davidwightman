@@ -54,8 +54,11 @@
     display: block;
 }
 
-
-
+@media (max-width: 768px) {
+    #dynamic-nav a span {
+        display: block;
+    }
+}
 
 
 
