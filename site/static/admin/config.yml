@@ -7,6 +7,10 @@ public_folder: "/img"  # Global absolute path for public access
 
 local_backend: true
 
+media_library:
+  config:
+    max_file_size: 1048576 # 1MB in bytes
+
 collections:
   # Homepage as a file collection
   - name: "pages"
