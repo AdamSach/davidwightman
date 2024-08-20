@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 mainImage.classList.remove('slide-out');
                 mainImage.classList.add('slide-in');
 
-                mainImage.src = page.Params.image;
+                mainImage.src = page.Params.image.replace('site/static', '');
                 mainImage.alt = page.Title;
                 imageTitle.textContent = `${page.Title} (${page.Params.year})`;
                 imageMedium.textContent = page.Params.medium;

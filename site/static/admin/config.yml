@@ -26,7 +26,7 @@ collections:
           - label: "Menu Items"
             name: "menu_items"
             widget: "list"
-            create: false
+            collapsed: true
             fields:
               - { label: "Heading", name: "heading", widget: "string" }
               - { label: "Image", name: "image", widget: "image" }
@@ -36,7 +36,7 @@ collections:
         media_folder: "/site/static/img/bio"  # Absolute path ensures correct frontmatter
         public_folder: "/img/bio"  # Public-facing path
         fields:
-          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Title", name: "title", widget: "string", collapased: 'true' }
           - { label: "Image", name: "image", widget: "image" }
           - { label: "Body", name: "body", widget: "markdown" }
 
@@ -46,7 +46,7 @@ collections:
     folder: "site/content/fables"
     create: true
     slug: "{{slug}}"
-    media_folder: "static/img/fables"  # Absolute path
+    media_folder: "/site/static/img/fables"  # Absolute path
     public_folder: "/img/fables"  # Correct public path
     fields:
       - { label: "Title", name: "title", widget: "string" }
