@@ -2,7 +2,7 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "/static/img"  # Global absolute path for media folder
+media_folder: "/site/static/img"  # Global absolute path for media folder
 public_folder: "/img"  # Global absolute path for public access
 
 local_backend: true
