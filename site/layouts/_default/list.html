@@ -4,7 +4,7 @@
 {{ $title := $homepage.Params.title | default "David Majury Wightman" }}
 {{ $fontcolor := $homepage.Params.textcolor | default "white" }}
 
-<div id="gallery-container" style="display: flex; align-items: center; justify-content: center; height: 100vh;">
+<div id="gallery-container" style="display: flex; align-items: center; justify-content: center; height: 100vh; position: relative;">
     
     <!-- Left Arrow -->
     <div id="left-arrow" class="gallery-arrow" style="cursor: pointer; font-size: 2rem; padding: 0 20px; color: {{ $fontcolor }};">&#9664;</div>
@@ -18,12 +18,32 @@
             <p id="image-title" style="color: white; margin: 0; font-style: italic;">{{ with index .Pages 0 }}{{ .Title }}{{ end }} ({{ with index .Pages 0 }}{{ .Params.year }}{{ end }})</p>
             <p id="image-medium" style="color: white; margin: 0;">{{ with index .Pages 0 }}{{ .Params.medium }}{{ end }}</p>
             <p id="image-dimensions" style="color: white; margin: 0;">{{ with index .Pages 0 }}{{ .Params.dimensions }}{{ end }}</p>
+            {{ with index .Pages 0 }}
+                {{ if gt (len .Content) 1 }}
+                    <p id="info-button" style="cursor: pointer; color: white; margin: 0; text-decoration: underline;">more information</p>
+                {{ end }}
+            {{ end }}
         </div>
     </div>
     
     <!-- Right Arrow -->
     <div id="right-arrow" class="gallery-arrow" style="cursor: pointer; font-size: 2rem; padding: 0 20px; color: {{ $fontcolor }};">&#9654;</div>
 </div>
+
+{{ with index .Pages 0 }}
+    {{ if gt (len .Content) 1 }}
+        <div id="info-modal">
+            <div>
+                <div style="background-color: {{ $fontcolor }};">
+                    <span id="close-modal" >&times;</span>
+                    <div>
+                        {{ .Content }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{ end }}
+{{ end }}
 
 
 <script>
@@ -36,6 +56,31 @@ document.addEventListener('DOMContentLoaded', function() {
     const imageTitle = document.getElementById('image-title');
     const imageMedium = document.getElementById('image-medium');
     const imageDimensions = document.getElementById('image-dimensions');
+
+    const infoButton = document.getElementById('info-button');
+    const infoModal = document.getElementById('info-modal');
+    const closeModal = document.getElementById('close-modal');
+
+    mainImage.src = mainImage.src.replace('/site/static', '');
+
+    // Show modal on info button click
+    if (infoButton && infoModal && closeModal) {
+        infoButton.addEventListener('click', function() {
+            infoModal.style.display = 'flex';
+        });
+
+        // Close modal on close button click
+        closeModal.addEventListener('click', function() {
+            infoModal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside the content box
+        window.addEventListener('click', function(event) {
+            if (event.target == infoModal) {
+                infoModal.style.display = 'none';
+            }
+        });
+    }
 
     // Handle swipe gestures
     let startX = 0;
@@ -73,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 mainImage.classList.remove('slide-out');
                 mainImage.classList.add('slide-in');
 
-                mainImage.src = page.Params.image.replace('site/static', '');
+                mainImage.src = page.Params.image.replace('/site/static', '');
                 mainImage.alt = page.Title;
                 imageTitle.textContent = `${page.Title} (${page.Params.year})`;
                 imageMedium.textContent = page.Params.medium;
@@ -114,15 +159,10 @@ document.addEventListener('DOMContentLoaded', function() {
         navigateGallery(1);
     });
 
-   // Initialize gallery with the first image
-   // updateGallery(currentIndex);
+    // Initialize gallery with the first image
+    // updateGallery(currentIndex);
 });
 
-
-    </script>
-    
-
-
+</script>
 
 {{ end }}
-
