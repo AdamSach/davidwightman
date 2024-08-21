@@ -21,10 +21,9 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
 
 ![](/img/bio/_l3d0458.jpeg)
 
-```<iframe width="560" height="315" src="https://www.youtube.com/embed/QhQTMEIqETk?si=hg9UpgJFHcCwsIpC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QhQTMEIqETk?si=hg9UpgJFHcCwsIpC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-```
 
 
 
