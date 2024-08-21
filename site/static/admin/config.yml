@@ -58,7 +58,7 @@ collections:
       - { label: "Medium", name: "medium", widget: "string" }
       - { label: "Dimensions", name: "dimensions", widget: "string" }
       - { label: "Image", name: "image", widget: "image" }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
 
   - name: "ikons"
     label: "Ikons"
@@ -73,7 +73,7 @@ collections:
       - { label: "Medium", name: "medium", widget: "string" }
       - { label: "Dimensions", name: "dimensions", widget: "string" }
       - { label: "Image", name: "image", widget: "image" }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
 
   - name: "untitled"
     label: "Untitled"

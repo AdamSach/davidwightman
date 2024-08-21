@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { useMediaAsset } from "@staticcms/core";
 
-const BiographyPreview = ({ entry }) => {
+const BiographyPreview = ({ entry, collection, field }) => {
   const [currentSound, setCurrentSound] = useState(null);
 
   // Extract data directly from the entry object
   const title = entry.data.title || "Biography";
   const content = entry.data.body || "Biography content goes here.";
   const sounds = entry.data.sounds || [];
-  const image = entry.data.image || ""; // Directly use the image path
+  const image = useMediaAsset(entry.data.image, collection, field, entry);
 
   const shadowX = -5; // Shadow offset to the left
   const shadowY = 5;  // Shadow offset downwards

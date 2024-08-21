@@ -1,12 +1,13 @@
 import React from "react";
+import { useMediaAsset } from "@staticcms/core";
 
-const ArtworkPreview = ({ entry }) => {
+const ArtworkPreview = ({ entry, collection, field }) => {
   // Extract data directly from the entry object
   const title = entry.data.title || "Untitled";
   const year = entry.data.year || "Unknown Year";
   const medium = entry.data.medium || "Unknown Medium";
   const dimensions = entry.data.dimensions || "Unknown Dimensions";
-  const image = entry.data.image || ""; // Directly use the image path
+  const image = useMediaAsset(entry.data.image, collection, field, entry);
   const additionalInfo = entry.data.body || ""; // Additional info
 
   const shadowX = 10; // Shadow offset to the right
