@@ -18,11 +18,7 @@
             <p id="image-title" style="color: white; margin: 0; font-style: italic;">{{ with index .Pages 0 }}{{ .Title }}{{ end }} ({{ with index .Pages 0 }}{{ .Params.year }}{{ end }})</p>
             <p id="image-medium" style="color: white; margin: 0;">{{ with index .Pages 0 }}{{ .Params.medium }}{{ end }}</p>
             <p id="image-dimensions" style="color: white; margin: 0;">{{ with index .Pages 0 }}{{ .Params.dimensions }}{{ end }}</p>
-            {{ with index .Pages 0 }}
-                {{ if gt (len .Content) 1 }}
-                    <p id="info-button" style="cursor: pointer; color: white; margin: 0; text-decoration: underline;">more information</p>
-                {{ end }}
-            {{ end }}
+            <!-- Info button will be added dynamically here -->
         </div>
     </div>
     
@@ -30,21 +26,7 @@
     <div id="right-arrow" class="gallery-arrow" style="cursor: pointer; font-size: 2rem; padding: 0 20px; color: {{ $fontcolor }};">&#9654;</div>
 </div>
 
-{{ with index .Pages 0 }}
-    {{ if gt (len .Content) 1 }}
-        <div id="info-modal">
-            <div>
-                <div style="background-color: {{ $fontcolor }};">
-                    <span id="close-modal" >&times;</span>
-                    <div>
-                        {{ .Content }}
-                    </div>
-                </div>
-            </div>
-        </div>
-    {{ end }}
-{{ end }}
-
+<!-- Info modal will be added dynamically here -->
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -56,56 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const imageTitle = document.getElementById('image-title');
     const imageMedium = document.getElementById('image-medium');
     const imageDimensions = document.getElementById('image-dimensions');
-
-    const infoButton = document.getElementById('info-button');
-    const infoModal = document.getElementById('info-modal');
-    const closeModal = document.getElementById('close-modal');
-
-    mainImage.src = mainImage.src.replace('/site/static', '');
-
-    // Show modal on info button click
-    if (infoButton && infoModal && closeModal) {
-        infoButton.addEventListener('click', function() {
-            infoModal.style.display = 'flex';
-        });
-
-        // Close modal on close button click
-        closeModal.addEventListener('click', function() {
-            infoModal.style.display = 'none';
-        });
-
-        // Close modal when clicking outside the content box
-        window.addEventListener('click', function(event) {
-            if (event.target == infoModal) {
-                infoModal.style.display = 'none';
-            }
-        });
-    }
-
-    // Handle swipe gestures
-    let startX = 0;
-    let endX = 0;
-
-    mainImage.addEventListener('touchstart', function(event) {
-        startX = event.touches[0].clientX;
-    });
-
-    mainImage.addEventListener('touchmove', function(event) {
-        endX = event.touches[0].clientX;
-    });
-
-    mainImage.addEventListener('touchend', function() {
-        if (isAnimating) return;
-
-        const deltaX = endX - startX;
-        if (Math.abs(deltaX) > 50) { // Swipe distance threshold
-            if (deltaX > 0) {
-                navigateGallery(-1); // Swipe right, go to previous image
-            } else {
-                navigateGallery(1); // Swipe left, go to next image
-            }
-        }
-    });
 
     function updateGallery(index) {
         if (index >= 0 && index < pages.length) {
@@ -124,6 +56,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 imageMedium.textContent = page.Params.medium;
                 imageDimensions.textContent = page.Params.dimensions;
 
+                updateInfoButtonAndModal(page);
+                console.log(page);
+
                 mainImage.addEventListener('animationend', function handleSlideIn() {
                     mainImage.classList.remove('slide-in');
                     isAnimating = false;
@@ -134,6 +69,85 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         } else {
             console.error("Index out of bounds:", index);
+        }
+    }
+
+    function updateInfoButtonAndModal(page) {
+        // Remove any existing info button or modal
+        const existingInfoButton = document.getElementById('info-button');
+        if (existingInfoButton) {
+            existingInfoButton.remove();
+        }
+
+        const existingInfoModal = document.getElementById('info-modal');
+        if (existingInfoModal) {
+            existingInfoModal.remove();
+        }
+
+        // Add new info button if the content exists
+        if (page.RawContent && page.RawContent.length > 1) {
+            const galleryLabel = document.getElementById('gallery-label');
+            const infoButton = document.createElement('p');
+            infoButton.id = 'info-button';
+            infoButton.style.cursor = 'pointer';
+            infoButton.style.color = 'white';
+            infoButton.style.margin = '0';
+            infoButton.style.textDecoration = 'underline';
+            infoButton.textContent = 'more information';
+            galleryLabel.appendChild(infoButton);
+
+            // Add new modal
+            const infoModal = document.createElement('div');
+            infoModal.id = 'info-modal';
+            infoModal.style.display = 'none';
+            infoModal.style.position = 'fixed';
+            infoModal.style.top = '0';
+            infoModal.style.left = '0';
+            infoModal.style.width = '100vw';
+            infoModal.style.height = '100vh';
+            infoModal.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+            infoModal.style.zIndex = '1000';
+
+            const modalContent = document.createElement('div');
+            modalContent.style.overflowY = 'auto';
+            modalContent.style.position = 'absolute';
+            modalContent.style.top = '50%';
+            modalContent.style.left = '50%';
+            modalContent.style.transform = 'translate(-50%, -50%)';
+            modalContent.style.maxWidth = '90%';
+            modalContent.style.padding = '20px';
+            modalContent.style.backgroundColor = '{{ $fontcolor }}';
+            modalContent.style.borderRadius = '10px';
+            modalContent.style.boxShadow = '0px 4px 10px rgba(0, 0, 0, 0.3)';
+            modalContent.innerHTML = page.RawContent;
+
+            const closeModal = document.createElement('span');
+            closeModal.id = 'close-modal';
+            closeModal.style.cursor = 'pointer';
+            closeModal.style.fontSize = '24px';
+            closeModal.style.position = 'absolute';
+            closeModal.style.top = '0px';
+            closeModal.style.right = '12px';
+            closeModal.innerHTML = '&times;';
+            closeModal.addEventListener('click', function() {
+                infoModal.style.display = 'none';
+            });
+
+            modalContent.appendChild(closeModal);
+            infoModal.appendChild(modalContent);
+            document.body.appendChild(infoModal);
+
+            // Show modal on info button click
+            infoButton.addEventListener('click', function() {
+                infoModal.style.display = 'flex';
+            });
+
+            // Close modal when clicking outside the content box
+            window.addEventListener('click', function(event) {
+                if (event.target == infoModal) {
+                    infoModal.style.display = 'none';
+                }
+            });
         }
     }
 
