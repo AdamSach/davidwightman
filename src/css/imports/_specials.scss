@@ -178,29 +178,67 @@
     overflow: hidden; /* Hide overflow to avoid showing images during animation */
 }
 
-/* Animation for sliding out to the left */
-@keyframes slideOutLeft {
-    0% {
-        transform: translateX(0);
-        opacity: 1;
+/* Add these CSS animations */
+@keyframes slideInLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
     }
-    100% {
-        transform: translateX(-100%);
-        opacity: 0;
+    to {
+      transform: translateX(0);
+      opacity: 1;
     }
-}
-
-/* Animation for sliding in from the right */
-@keyframes slideInRight {
-    0% {
-        transform: translateX(100%);
-        opacity: 0;
+  }
+  
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
     }
-    100% {
-        transform: translateX(0);
-        opacity: 1;
+    to {
+      transform: translateX(0);
+      opacity: 1;
     }
-}
+  }
+  
+  @keyframes slideOutLeft {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes slideOutRight {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+  
+  .slide-in-left {
+    animation: slideInLeft 0.5s forwards;
+  }
+  
+  .slide-in-right {
+    animation: slideInRight 0.5s forwards;
+  }
+  
+  .slide-out-left {
+    animation: slideOutLeft 0.5s forwards;
+  }
+  
+  .slide-out-right {
+    animation: slideOutRight 0.5s forwards;
+  }
+  
 
 #info-modal {
     display: none;
