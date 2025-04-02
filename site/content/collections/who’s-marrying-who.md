@@ -1,8 +1,8 @@
 ---
-title: Who’s marrying who
-year: "2015"
+title: Untitled
+year: "1999"
 medium: Oil on canvas
-dimensions: 20x24in. / 50.8x60.96cm
-image: /img/collections/img_1404-compressed.jpeg
+dimensions: 12x10in. / 30.48x25.4cm
+image: /img/collections/att.jw0zdxnw1wubxxlkapsd0tfltzzeb8ovlsrv5xqputq-compressed.jpeg
 ---
-🔴 Private collection - France
+🔴 Private collection - Spain
