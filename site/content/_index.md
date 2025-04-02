@@ -1,7 +1,7 @@
 ---
 title: David Majury Wightman
-description: A short description of what this website i
-email: contact@me.com
+description: Artworks by David Majury Wightman
+email: davidmajurywightman@gmail.com
 textcolor: "#c9b239"
 backgroundcolor: "#2a86ad"
 menu_items:
