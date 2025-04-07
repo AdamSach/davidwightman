@@ -2,7 +2,7 @@
 title: "Untitled "
 year: "2016"
 medium: "Oil on canvas "
-dimensions: 16x20in. / 40.64x50.cm
+dimensions: 16x20in. / 40.5x51cm
 image: /img/untitled/_l3d9187.jpeg
 ---
 
