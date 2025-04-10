@@ -13,8 +13,4 @@ sounds:
   - /img/bio/9.mp4
   - /img/bio/10.mp4
 ---
-David Majury Wightman (1963-2019) was born in Newtownards, Northern Ireland. He led a bucolic Huckelberry Finn childhood until he was diagnosed with Legg–Calvé–Perthes disease at age ten. He spent over a year in hospital and was told he would never walk again. When it was proved otherwise, he ran away to London at fourteen and joined the burgeoning Punk/NewRomantic subculture.
-
-
-
-
+David Majury Wightman (1963-2019) was born in Newtownards, Northern Ireland. He led a bucolic Huckelberry Finn childhood until he was diagnosed with Legg–Calvé–Perthes disease at age ten. He spent over a year in hospital and was told he would never walk again. When it was proven otherwise, he ran away to London at fourteen and joined the burgeoning Punk/NewRomantic subculture.
