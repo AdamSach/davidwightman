@@ -13,4 +13,8 @@ sounds:
   - /img/bio/9.mp4
   - /img/bio/10.mp4
 ---
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+David Majury Wightman (1963-2019) was born in Newtownards, Northern Ireland. He led a bucolic Huckelberry Finn childhood until he was diagnosed with Legg–Calvé–Perthes disease at age ten. He spent over a year in hospital and was told he would never walk again. When it was proved otherwise, he ran away to London at fourteen and joined the burgeoning Punk/NewRomantic subculture.
+
+
+
+
