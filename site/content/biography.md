@@ -17,6 +17,4 @@ David Majury Wightman (1963-2019) was born in Newtownards, Northern Ireland. He 
 
 ![](/img/bio/img_1578.jpeg)
 ![](/img/bio/img_1585.jpeg)
-
-
-
+In 1987, David met his spouse and they moved to Barcelona the following year. 
