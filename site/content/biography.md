@@ -17,6 +17,4 @@ David Majury Wightman (1963-2019) was born in Newtownards, Northern Ireland. He 
 
 In 1987, David met his spouse and they moved to Barcelona the following years. He took a course in gold leafing at the Escola Drassanes and started painting in earnest. After a couple of exhibitions, they traveled to and lived in Hong Kong, China and Tibet for two years, back to London and then again to Barcelona - painting only sporadically. They moved back to London permanently in 2000.
 
-
-
-
+After another bout of illness, David
