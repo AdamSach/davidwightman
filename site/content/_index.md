@@ -2,6 +2,8 @@
 title: David Majury Wightman
 description: Artworks by David Majury Wightman
 email: davidmajurywightman@gmail.com
+instagram: "https://www.instagram.com/davidmwightman"
+facebook: "https://www.facebook.com/profile.php?id=100036109752304" 
 textcolor: "#c9b239"
 backgroundcolor: "#2a86ad"
 menu_items:

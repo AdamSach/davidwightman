@@ -2,6 +2,8 @@
 {{ $title := $homepage.Params.title | default "David Majury Wightman" }}
 {{ $contact := $homepage.Params.email | default "no email provided" }}
 {{ $fontcolor := $homepage.Params.textcolor | default "white" }}
+{{ $instagram := $homepage.Params.instagram | default "https://www.instagram.com/davidmwightman" }}
+{{ $facebook := $homepage.Params.facebook | default "https://www.facebook.com/profile.php?id=100036109752304" }}
 
 <footer class="bg-transparent ph3 pv4">
 
@@ -11,10 +13,19 @@
             {{ $title }} © {{ now.Format "2006" }}
         </h1>
                 <!-- Contact Information -->
-                <p class="f5 tr" style="max-width:unset; color: {{ $fontcolor }};text-shadow: rgba(0, 0, 0, 0.6) -5px 5px 5px;">
+                <p class="f5 tr" style="max-width:unset; color: {{ $fontcolor }};text-shadow: rgba(0, 0, 0, 0.6) -5px 5px 5px; margin-bottom: 0;">
                     Inquiries: 
                     <a style="color: {{ $fontcolor }};text-shadow: rgba(0, 0, 0, 0.6) -5px 5px 5px;" href="mailto:{{ $contact }}" class="link blue">
                         {{ $contact }}
+                    </a>
+                </p>
+                <p class="f5 tr" style="max-width:unset; color: {{ $fontcolor }};text-shadow: rgba(0, 0, 0, 0.6) -5px 5px 5px; margin-bottom: 0;">
+                    <a href="{{ $instagram }}" target="_blank" class="link blue" style="color: {{ $fontcolor }};text-shadow: rgba(0, 0, 0, 0.6) -5px 5px 5px;">
+                        Instagram
+                    </a>
+                    <span style="color: {{ $fontcolor }};text-shadow: rgba(0, 0, 0, 0.6) -5px 5px 5px;"> | </span>
+                    <a href="{{ $facebook }}" target="_blank" class="link blue" style="color: {{ $fontcolor }};text-shadow: rgba(0, 0, 0, 0.6) -5px 5px 5px;">
+                        Facebook
                     </a>
                 </p>
     </div>

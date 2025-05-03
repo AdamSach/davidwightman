@@ -26,69 +26,98 @@
     <div id="right-arrow" class="gallery-arrow" style="cursor: pointer; font-size: 2rem; padding: 0 20px; color: {{ $fontcolor }};">&#9654;</div>
 </div>
 
+
 <!-- Info modal will be added dynamically here -->
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const pages = JSON.parse('{{ .Pages | jsonify | safeJS }}');
-    let currentIndex = 0;
-    let isAnimating = false;
-    let startX = 0;
-    let endX = 0;
-
-    const mainImage = document.getElementById('main-image');
-    const imageTitle = document.getElementById('image-title');
-    const imageMedium = document.getElementById('image-medium');
-    const imageDimensions = document.getElementById('image-dimensions');
-
-    function updateGallery(index, direction) {
-        if (index >= 0 && index < pages.length) {
-            const page = pages[index];
-
-            const slideOutClass = direction === 'left' ? 'slide-out-right' : 'slide-out-left';
-            const slideInClass = direction === 'left' ? 'slide-in-left' : 'slide-in-right';
-
-            mainImage.classList.add(slideOutClass);
-            isAnimating = true;
-
-            mainImage.addEventListener('animationend', function handleSlideOut() {
-                mainImage.classList.remove(slideOutClass);
-                mainImage.classList.add(slideInClass);
-
-                mainImage.src = page.Params.image.replace('/site/static', '');
-                mainImage.alt = page.Title;
-                imageTitle.textContent = `${page.Title} (${page.Params.year})`;
-                imageMedium.textContent = page.Params.medium;
-                imageDimensions.textContent = page.Params.dimensions;
-
-                updateInfoButtonAndModal(page);
-
-                mainImage.addEventListener('animationend', function handleSlideIn() {
-                    mainImage.classList.remove(slideInClass);
-                    isAnimating = false;
-                    mainImage.removeEventListener('animationend', handleSlideIn);
-                });
-
-                mainImage.removeEventListener('animationend', handleSlideOut);
-            });
-        } else {
-            console.error("Index out of bounds:", index);
-        }
-    }
+    document.addEventListener('DOMContentLoaded', function() {
+        const pages = JSON.parse('{{ .Pages | jsonify | safeJS }}');
+        let currentIndex = 0;
+        let isAnimating = false;
+        let startX = 0;
+        let endX = 0;
     
-        function updateInfoButtonAndModal(page) {
-            // Remove any existing info button or modal
-            const existingInfoButton = document.getElementById('info-button');
-            if (existingInfoButton) {
-                existingInfoButton.remove();
+        const mainImage       = document.getElementById('main-image');
+        const imageTitle      = document.getElementById('image-title');
+        const imageMedium     = document.getElementById('image-medium');
+        const imageDimensions = document.getElementById('image-dimensions');
+    
+        // 1) Create hidden container for preloading
+        const preloadContainer = document.createElement('div');
+        preloadContainer.id = 'preload-container';
+        preloadContainer.style.display = 'none';
+        document.body.appendChild(preloadContainer);
+    
+        // 2) Helper to preload both previous and next images
+        function preloadAdjacent(idx) {
+            const prevIdx = (idx - 1 + pages.length) % pages.length;
+            const nextIdx = (idx + 1) % pages.length;
+    
+            // Clear any old images
+            preloadContainer.innerHTML = '';
+    
+            // Preload prev
+            const prevPage = pages[prevIdx];
+            const imgPrev = document.createElement('img');
+            imgPrev.src = prevPage.Params.image.replace('/site/static', '');
+            imgPrev.alt = prevPage.Title;
+            preloadContainer.appendChild(imgPrev);
+    
+            // Preload next
+            const nextPage = pages[nextIdx];
+            const imgNext = document.createElement('img');
+            imgNext.src = nextPage.Params.image.replace('/site/static', '');
+            imgNext.alt = nextPage.Title;
+            preloadContainer.appendChild(imgNext);
+        }
+    
+        function updateGallery(index, direction) {
+            if (index >= 0 && index < pages.length) {
+                const page = pages[index];
+    
+                const slideOutClass = direction === 'left' ? 'slide-out-right' : 'slide-out-left';
+                const slideInClass  = direction === 'left' ? 'slide-in-left'  : 'slide-in-right';
+    
+                mainImage.classList.add(slideOutClass);
+                isAnimating = true;
+    
+                mainImage.addEventListener('animationend', function handleSlideOut() {
+                    mainImage.classList.remove(slideOutClass);
+                    mainImage.classList.add(slideInClass);
+    
+                    // swap in the new artwork
+                    mainImage.src = page.Params.image.replace('/site/static', '');
+                    mainImage.alt = page.Title;
+                    imageTitle.textContent      = `${page.Title} (${page.Params.year})`;
+                    imageMedium.textContent     = page.Params.medium;
+                    imageDimensions.textContent = page.Params.dimensions;
+    
+                    updateInfoButtonAndModal(page);
+    
+                    mainImage.addEventListener('animationend', function handleSlideIn() {
+                        mainImage.classList.remove(slideInClass);
+                        isAnimating = false;
+                        mainImage.removeEventListener('animationend', handleSlideIn);
+                    });
+    
+                    mainImage.removeEventListener('animationend', handleSlideOut);
+    
+                    // 3) After each swap, preload prev & next
+                    preloadAdjacent(index);
+                });
+            } else {
+                console.error("Index out of bounds:", index);
             }
+        }
+        
+        function updateInfoButtonAndModal(page) {
+            // [your existing info‐button & modal code unchanged]
+            const existingInfoButton = document.getElementById('info-button');
+            if (existingInfoButton) existingInfoButton.remove();
     
             const existingInfoModal = document.getElementById('info-modal');
-            if (existingInfoModal) {
-                existingInfoModal.remove();
-            }
+            if (existingInfoModal) existingInfoModal.remove();
     
-            // Add new info button if the content exists
             if (page.RawContent && page.RawContent.length > 1) {
                 const galleryLabel = document.getElementById('gallery-label');
                 const infoButton = document.createElement('p');
@@ -100,7 +129,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 infoButton.textContent = 'more information';
                 galleryLabel.appendChild(infoButton);
     
-                // Add new modal
                 const infoModal = document.createElement('div');
                 infoModal.id = 'info-modal';
                 infoModal.style.display = 'none';
@@ -114,15 +142,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 const modalContent = document.createElement('div');
                 modalContent.style.overflowY = 'auto';
-                modalContent.style.position = 'absolute';
-                modalContent.style.top = '50%';
-                modalContent.style.left = '50%';
-                modalContent.style.transform = 'translate(-50%, -50%)';
-                modalContent.style.maxWidth = '90%';
-                modalContent.style.padding = '20px';
+                modalContent.style.position   = 'absolute';
+                modalContent.style.top        = '50%';
+                modalContent.style.left       = '50%';
+                modalContent.style.transform  = 'translate(-50%, -50%)';
+                modalContent.style.maxWidth   = '90%';
+                modalContent.style.padding    = '20px';
                 modalContent.style.backgroundColor = '{{ $fontcolor }}';
-                modalContent.style.borderRadius = '10px';
-                modalContent.style.boxShadow = '0px 4px 10px rgba(0, 0, 0, 0.3)';
+                modalContent.style.borderRadius    = '10px';
+                modalContent.style.boxShadow       = '0px 4px 10px rgba(0, 0, 0, 0.3)';
                 modalContent.innerHTML = page.RawContent;
     
                 const closeModal = document.createElement('span');
@@ -130,83 +158,69 @@ document.addEventListener('DOMContentLoaded', function() {
                 closeModal.style.cursor = 'pointer';
                 closeModal.style.fontSize = '24px';
                 closeModal.style.position = 'absolute';
-                closeModal.style.top = '0px';
-                closeModal.style.right = '12px';
+                closeModal.style.top      = '0px';
+                closeModal.style.right    = '12px';
                 closeModal.innerHTML = '&times;';
-                closeModal.addEventListener('click', function() {
-                    infoModal.style.display = 'none';
-                });
+                closeModal.addEventListener('click', () => infoModal.style.display = 'none');
     
                 modalContent.appendChild(closeModal);
                 infoModal.appendChild(modalContent);
                 document.body.appendChild(infoModal);
     
-                // Show modal on info button click
-                infoButton.addEventListener('click', function() {
-                    infoModal.style.display = 'flex';
-                });
-    
-                // Close modal when clicking outside the content box
-                window.addEventListener('click', function(event) {
-                    if (event.target == infoModal) {
-                        infoModal.style.display = 'none';
-                    }
+                infoButton.addEventListener('click', () => infoModal.style.display = 'flex');
+                window.addEventListener('click', event => {
+                    if (event.target == infoModal) infoModal.style.display = 'none';
                 });
             }
         }
     
-    function navigateGallery(direction) {
-        if (isAnimating) return;
-
-        const nextIndex = direction === 'left' ? currentIndex + 1 : currentIndex - 1;
-
-        if (nextIndex < 0) {
-            currentIndex = pages.length - 1;
-        } else if (nextIndex >= pages.length) {
-            currentIndex = 0;
-        } else {
-            currentIndex = nextIndex;
-        }
-
-        updateGallery(currentIndex, direction);
-    }
+        function navigateGallery(direction) {
+            if (isAnimating) return;
     
-        document.getElementById('left-arrow').addEventListener('click', function() {
-        navigateGallery('left');
-    });
-
-    document.getElementById('right-arrow').addEventListener('click', function() {
-        navigateGallery('right');
-    });
-
-    // Touch event listeners for swipe navigation
-    mainImage.addEventListener('touchstart', function(event) {
-        startX = event.touches[0].clientX;
-    });
-
-    mainImage.addEventListener('touchmove', function(event) {
-        endX = event.touches[0].clientX;
-    });
-
-    mainImage.addEventListener('touchend', function() {
-        const threshold = 50; // Minimum distance for swipe to be considered
-        const diffX = startX - endX;
-
-        if (Math.abs(diffX) > threshold) {
-            if (diffX > 0) {
-                // Swiped left
-                navigateGallery('right');
+            const nextIndex = direction === 'left' ? currentIndex + 1 : currentIndex - 1;
+    
+            if (nextIndex < 0) {
+                currentIndex = pages.length - 1;
+            } else if (nextIndex >= pages.length) {
+                currentIndex = 0;
             } else {
-                // Swiped right
-                navigateGallery('left');
+                currentIndex = nextIndex;
             }
-        }
-    });
     
-        // Initialize gallery with the first image
-        // updateGallery(currentIndex);
+            updateGallery(currentIndex, direction);
+        }
+    
+        document.getElementById('left-arrow').addEventListener('click',  () => navigateGallery('left'));
+        document.getElementById('right-arrow').addEventListener('click', () => navigateGallery('right'));
+    
+        mainImage.addEventListener('touchstart', function(event) {
+            startX = event.touches[0].clientX;
+        });
+    
+        mainImage.addEventListener('touchmove', function(event) {
+            endX = event.touches[0].clientX;
+        });
+    
+        mainImage.addEventListener('touchend', function() {
+            const threshold = 50;
+            const diffX = startX - endX;
+            if (Math.abs(diffX) > threshold) {
+                if (diffX > 0) {
+                    navigateGallery('right');
+                } else {
+                    navigateGallery('left');
+                }
+            }
+        });
+        
+        // 4) Initial preload of both adjacent images
+        preloadAdjacent(currentIndex);
+    
+
     });
     </script>
+    
+    
     
 
 {{ end }}
