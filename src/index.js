@@ -32,14 +32,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to animate out the homepage content and then navigate
     function animateOutAndNavigate(url) {
-        console.log("Navigating to:", url);
-        homepageContent.classList.add('animate-out'); // Start the animation
+       // console.log("Navigating to:", url);
+        // homepageContent.classList.add('animate-out'); // Start the animation
 
         // Wait for the animation to complete before navigating
-        homepageContent.addEventListener('animationend', () => {
+       // homepageContent.addEventListener('animationend', () => {
             // homepageContent.classList.add('hidden'); // Hide the content
             window.location.href = url; // Navigate to the clicked section
-        }, { once: true });
+       // }, { once: true });
     }
 
     // Attach event listeners to each menu item link
