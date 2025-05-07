@@ -27,6 +27,8 @@ collections:
           - { label: "Email", name: "email", widget: "string" }
           - { label: "Text Color", name: "textcolor", widget: "color" }
           - { label: "Background Color", name: "backgroundcolor", widget: "color" }
+          - { label: "Instagram link", name: "instagram", widget: "string" }
+          - { label: "Facebook link", name: "facebook", widget: "string" }
           - label: "Menu Items"
             name: "menu_items"
             widget: "list"
